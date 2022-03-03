@@ -16,7 +16,7 @@ function Register() {
     setStep((prev) => prev + ad);
   };
   useEffect(() => {
-    if (Parse.User.current() === undefined) {
+    if (Parse.User.current() === null) {
       setStep(0);
     } else {
       const query = new Parse.Query("InternetSpeedtest");
