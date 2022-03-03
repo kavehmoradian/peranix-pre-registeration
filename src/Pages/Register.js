@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
+import StepBar from "../Components/StepBar/StepBar"
 
 function Register() {
+    const [step, setStep] = useState(0);
     return (
         <div>
-            Register
+            <StepBar step={step}/>
         </div>
     )
 }

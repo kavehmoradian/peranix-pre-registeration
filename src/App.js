@@ -23,7 +23,7 @@ function App() {
     <Layout>
     <Router>
       <Header/>
-        <Content style={{marginTop:50}}>
+        <Content style={{marginTop:70}}>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/register" component={Register} />

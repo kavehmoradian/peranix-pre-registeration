@@ -19,7 +19,7 @@ function Head() {
             <div className="secounder-mobile-menu">
                 <NavLink
                 activeClassName="menu-item-selected"
-                className="menu-item-prnx"
+                className="menu-item-prnx menu-item-selected"
                 exact
                 to="/">
                 صفحه اصلی
