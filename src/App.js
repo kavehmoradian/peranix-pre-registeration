@@ -2,9 +2,10 @@ import React from "react";
 import { Layout, Row, Col } from "antd";
 
 //import route
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Switch, Route } from "react-router-dom";
 
 //import syles
+import "./Assets/style/fonts.css";
 import "./Assets/style/App.less";
 
 //import pages
@@ -24,15 +25,18 @@ function App() {
         <Router>
           <Header />
           <Content style={{ marginTop: 70 }}>
-            <Row>
+            <Row justify="center">
               <Col
-                justify="center"
-                xs={{ span: 22, offset: 1 }}
-                lg={{ span: 14, offset: 5 }}
+                span={22}
+              // xs={{ span: 22, offset: 1 }}
+              // lg={{ span: 14, offset: 5 }}
               >
                 <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route path="/register" component={Register} />
+                  <Route exact path="/">
+                    <Redirect to="/pre-register" />
+                  </Route>
+                  <Route exact path="/pre-register" component={Home} />
+                  <Route path="/pre-register/gta-v/" component={Register} />
                   <Route path="*" component={NotFound} />
                 </Switch>
               </Col>

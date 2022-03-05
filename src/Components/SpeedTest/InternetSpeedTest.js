@@ -17,6 +17,8 @@ const InternetSpeedTest = (props) => {
   const [jitterStatus, setJitterStatus] = useState(0);
   const [percent, setPercent] = useState(0);
   const [testStatus, setTestStatus] = useState(-1);
+  const [loading, setLoading] = useState(false);
+  const [saveLoading, setSaveLoading] = useState(false);
 
   test.onupdate = (data) => {
     setDlSpeed(
@@ -46,6 +48,7 @@ const InternetSpeedTest = (props) => {
       jitterStatus !== 0 &&
       pingStatus !== 0
     ) {
+      setSaveLoading(true);
       const InternetSpeedtest = Parse.Object.extend("InternetSpeedtest");
       const internetSpeedtest = new InternetSpeedtest();
       internetSpeedtest.set("user", currentUser);
@@ -54,6 +57,7 @@ const InternetSpeedTest = (props) => {
       internetSpeedtest.set("jitter", String(jitterStatus));
       internetSpeedtest.set("ping", String(pingStatus));
       await internetSpeedtest.save();
+      setSaveLoading(false);
       handleStep(+1);
     }
   };
@@ -62,11 +66,13 @@ const InternetSpeedTest = (props) => {
     setTestStatus(-1);
   };
   useEffect(() => {
+    setLoading(true);
     const getServerList = () => {
       if (speedTestServer.current === null)
         Parse.Config.get().then((config) => {
           test.setSelectedServer(config.get("speed_test_serve"));
           speedTestServer.current = config.get("speed_test_serve");
+          setLoading(false);
           if (props.autoStart) {
             startTest();
           }
@@ -77,7 +83,7 @@ const InternetSpeedTest = (props) => {
   return (
     <>
       <Row>
-        <Col span={24}>
+        <Col span={24} style={{ padding: '0px 6px 0px 6px' }}>
           <Progress
             strokeColor={{
               from: "#108ee9",
@@ -86,20 +92,6 @@ const InternetSpeedTest = (props) => {
             percent={percent}
             status="active"
           />
-          <Row>
-            <Col>
-              <p
-                style={{
-                  marginTop: "20px",
-                  lineHeight: "30px",
-                  textAlign: "center",
-                }}
-              >
-                برای انتخاب زمان بازی می‌بایست کیفیت اتصال اینترنت شما رو بررسی
-                کنیم.
-              </p>
-            </Col>
-          </Row>
           {testStatus === -1 ? null : testStatus === 0 ? (
             <p>- تست در حال انجامه</p>
           ) : testStatus === 1 ? (
@@ -188,7 +180,7 @@ const InternetSpeedTest = (props) => {
           )}
         </Col>
       </Row>
-      {[-1, 4, 5].includes(testStatus) ? (
+      {[5].includes(testStatus) ? (
         <Row justify="center">
           <Col span={8} style={{ textAlign: "center" }}>
             <Button
@@ -197,11 +189,29 @@ const InternetSpeedTest = (props) => {
               onClick={startTest}
               style={{ float: "right" }}
             >
-              شروع تست
+              شروع محدد تست
             </Button>
           </Col>
         </Row>
       ) : null}
+      {
+        loading
+          ? <Row justify="center">
+            <Col span={24} style={{ textAlign: "center" }}>
+              در حال جستجوی نزدیک ترین سرور تست سرعت...
+            </Col>
+          </Row>
+          : null
+      }
+      {
+        saveLoading
+          ? <Row justify="center">
+            <Col span={24} style={{ textAlign: "center" }}>
+              تست انجام شد، در حال ذخیره داده ها...
+            </Col>
+          </Row>
+          : null
+      }
     </>
   );
 };

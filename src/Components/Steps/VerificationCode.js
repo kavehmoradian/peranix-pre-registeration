@@ -79,7 +79,8 @@ let VerificationCode = ({ phone, handleStep, step }) => {
     handleStep(-1);
   };
   return (
-    <>
+    <Row justify="center">
+      <Col xs={24} md={18} style={{ paddingRight: '5px' }}>
       <Title>کد تایید</Title>
       <p style={{ fontSize: "18px" }}>
         کد تایید 4 رقمی برای {"0" + phone} ارسال شده است.لطفا آن را وارد کنید.
@@ -88,11 +89,12 @@ let VerificationCode = ({ phone, handleStep, step }) => {
         <Col md={24} xs={23}>
           <Form>
             <Row>
-              <Col xs={24}>
+              <Col xs={24} style={{ textAlign: 'center' }}>
                 <div style={{ marginBottom: 16 }}>
                   <Form.Item {...hasError}>
                     <div className="input-form-siunup-otp-code">
                       <OtpInput
+                      containerStyle={{margin:'auto'}}
                         value={otp}
                         onChange={handleChange}
                         numInputs={4}
@@ -103,17 +105,18 @@ let VerificationCode = ({ phone, handleStep, step }) => {
                       />
                     </div>
                   </Form.Item>
-                  <Row>
-                    <Col xs={10} md={7}>
+                  <Row justify="center">
+                    <Col xs={12} md={7} style={{textAlign:'left'}}>
                       کد را دریافت نکردید؟
                     </Col>
-                    <Col xs={7}>
+                    <Col xs={12} style={{textAlign:'tight'}}>
                       <Button
                         disabled={sendSmsAgainBtn}
                         type="text"
                         onClick={sendCodeAgian}
                         style={{
                           height: "unset",
+                          marginTop:'-3px'
                         }}
                       >
                         {sendSmsAgainBtn ? (
@@ -131,7 +134,7 @@ let VerificationCode = ({ phone, handleStep, step }) => {
                           <span
                             style={{
                               fontFamily: "iranyekan",
-                              color: "#15b6fb",
+                              color: "#15b6f6",
                             }}
                           >
                             ارسال دوباره
@@ -160,7 +163,8 @@ let VerificationCode = ({ phone, handleStep, step }) => {
           </Form>
         </Col>
       </Row>
-    </>
+      </Col>
+    </Row>
   );
 };
 

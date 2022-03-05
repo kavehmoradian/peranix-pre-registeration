@@ -19,7 +19,7 @@ function PhoneStesps({ handlePhone, handleStep, step }) {
       if (phone[0] === "0") {
         phone = phone.slice(1, phone.length);
       }
-      await Parse.Cloud.run("sendOtpCode", { phone, source: "gta-v" });
+      await Parse.Cloud.run("sendOtpCode", { phone, source: "gta-v-instagram-1400/12/13" });
 
       handlePhone(phone);
       handleStep(+1);
@@ -42,69 +42,68 @@ function PhoneStesps({ handlePhone, handleStep, step }) {
       setPhoneValidLen(10);
   };
   return (
-    <>
-      <h1>شماره تلفن همراه خود را وارد کنید</h1>
-      <p style={{ fontSize: "18px" }}>
-        توجه کنید پیش ثبت نام در پرانیکس با تلفن همراه هیچ گونه هزینه ای از شارژ
-        سیم کارت شما کسر نمی‌کند.
-      </p>
-      <p style={{ fontSize: "18px", color: "#ffb703" }}>
-        شماره ای که وارد میکنید امکان تغییر نخواهد داشت.
-      </p>
-      <Row>
-        <Col md={24} xs={23}>
-          <Form
-            name="basic"
-            onFinish={onNext}
-            onFieldsChange={(_, allFields) => {
-              if (allFields[0].errors.length === 0 && nextDisable) {
-                setnextDisable(false);
-              } else if (allFields[0].errors.length !== 0 && !nextDisable) {
-                setnextDisable(true);
-                return;
-              }
-            }}
-          >
-            <div style={{ marginBottom: 100 }}>
-              <Form.Item
-                name="phone"
-                {...inputError}
-                rules={[
-                  {
-                    required: true,
-                    message: "لطفا تلفن همراه خود را وارد کنید.",
-                  },
-                  {
-                    pattern: /([\u06F0-\u06F9]|[0-9]|[\u0660-\u0669])+$/,
-                    message: "فقط از اعداد فارسی یا انگلیسی استفاده کنید",
-                  },
-                  {
-                    pattern: /^([\u06F0]|[0]|[\u0660])?([\u06F9]|[9]|[\u0669])/,
-                    message: "تلفن همراه وارد شده صحیح نیست",
-                  },
-                ]}
-              >
-                <Input
-                  addonAfter="98+"
-                  placeholder="910-111-1111"
-                  className="input-form-siunup input-form-siunup-phone-number"
-                  onChange={phoneChangeHandler}
-                  type="tel"
-                  maxLength={phoneValidLen}
-                  style={{ direction: "rtl", textAlign: "left" }}
-                />
-              </Form.Item>
-            </div>
-            <ToolBar
-              step={step}
-              next={onNext}
-              previous={onPrevious}
-              nextDisable={nextDisable}
-            />
-          </Form>
-        </Col>
-      </Row>
-    </>
+    <Row justify="center">
+      <Col xs={24} md={18} style={{ paddingRight: '5px' }}>
+        <h1 style={{ color: '#ff9e00' }}>تا ظرفیت بازی GTA V تموم نشده سریع ثبت نام کن!</h1>
+        <p style={{ fontSize: "18px", margin: '30px 0px 50px 0px' }}>
+          توجه کنید ثبت نام در پرانیکس هیچ هزینه ای از شارژ سیم کارت شما کم نمیکند و رایگان است.
+        </p>
+        <Row>
+          <Col md={24} xs={23} style={{ textAlign: 'center' }}>
+            <Form
+              name="basic"
+              onFinish={onNext}
+              onFieldsChange={(_, allFields) => {
+                if (allFields[0].errors.length === 0 && nextDisable) {
+                  setnextDisable(false);
+                } else if (allFields[0].errors.length !== 0 && !nextDisable) {
+                  setnextDisable(true);
+                  return;
+                }
+              }}
+            >
+              <div style={{ marginBottom: 60 }}>
+                <Form.Item
+                  name="phone"
+                  {...inputError}
+                  rules={[
+                    {
+                      required: true,
+                      message: "لطفا تلفن همراه خود را وارد کنید.",
+                    },
+                    {
+                      pattern: /([\u06F0-\u06F9]|[0-9]|[\u0660-\u0669])+$/,
+                      message: "فقط از اعداد فارسی یا انگلیسی استفاده کنید",
+                    },
+                    {
+                      pattern: /^([\u06F0]|[0]|[\u0660])?([\u06F9]|[9]|[\u0669])/,
+                      message: "تلفن همراه وارد شده صحیح نیست",
+                    },
+                  ]}
+                >
+                  <Input
+                    size="large"
+                    addonAfter="98+"
+                    placeholder="910-111-1111"
+                    className="input-form-siunup input-form-siunup-phone-number"
+                    onChange={phoneChangeHandler}
+                    type="tel"
+                    maxLength={phoneValidLen}
+                    style={{ direction: "rtl", textAlign: "left" }}
+                  />
+                </Form.Item>
+              </div>
+              <ToolBar
+                step={step}
+                next={onNext}
+                previous={onPrevious}
+                nextDisable={nextDisable}
+              />
+            </Form>
+          </Col>
+        </Row>
+      </Col>
+    </Row>
   );
 }
 

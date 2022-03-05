@@ -12,6 +12,7 @@
 @btn-secondary-color: white;
 
 @font-size-base: 16px; // major text font size
+@font-family: 'iranyekan';
 @mobile: ~"only screen and (min-width: 360px) and (max-width: 720px)";
 
 //layout
@@ -62,8 +63,13 @@ body {
   min-height: 70px;
   padding: 5px 10px;
 }
+.steps-action{
+  text-align: center;
+}
 .steps-action .ant-btn {
-  padding: 0px 30px;
+  height: 47px;
+  width: 100px;
+  font-size: 21px;
 }
 
 .users-info {
@@ -95,16 +101,17 @@ body {
 }
 
 .ant-steps-item-finish .ant-steps-item-icon {
-  background-color: #38a506 !important;
-  border-color: #38a506 !important;
+  background-color: #359d58 !important;
+  border-color: #359d58 !important;
 }
 .ant-steps-item-wait .ant-steps-item-icon {
-  background-color: #519edd !important;
-  border-color: #519edd !important;
+  background-color: #15b6f6 !important;
+  border-color: #15b6f6 !important;
 }
 .ant-steps-item-active .ant-steps-item-icon {
-  background-color: #ff9e00 !important;
-  border-color: #ff9e00 !important;
+  background-color: #15b6f6 !important;
+  border: 3px solid #fff !important;
+  box-sizing: content-box;
 }
 
 .ant-steps-item-active .ant-steps-item-title {
@@ -144,4 +151,38 @@ body {
 
 .input-form-siunup-otp-code-error {
   border-color: #a61d24 !important;
+}
+.main-advantage-item-title{
+  font-weight: 900;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+.main-advantage-item-content{
+  font-size: 16px;
+  line-height: 27px;
+  padding-right: 10px;
+}
+.main-advantage-item-img div{
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: gray;
+}
+.main-advantage-item-img div img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.start-register-btn {
+  background: #fff;
+  color: #202124;
+  width: 211px;
+  display: inline-block;
+  padding: 14px 0px;
+  text-align: center;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 500;
+  margin: auto;
+  margin-bottom: 50px;
 }

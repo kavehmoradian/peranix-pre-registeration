@@ -1,8 +1,9 @@
 import React from "react";
 import { Layout } from "antd";
 import { Link, NavLink } from "react-router-dom";
-import Logo from "../../Assets/images/logo-and-type-white.png";
+import Logo from "../../Assets/images/white-logo.png";
 const { Header } = Layout;
+
 
 function Head() {
   return (
@@ -13,12 +14,12 @@ function Head() {
       <div
         style={{
           float: "right",
-          width: "160px",
+          width: "65px",
           marginLeft: "14px",
           margin: "-5px 0px 0 12px",
         }}
       >
-        <Link to="/">
+        <Link to="/pre-register">
           <img src={Logo} alt="logo" style={{ width: "100%" }} />
         </Link>
       </div>
@@ -27,7 +28,7 @@ function Head() {
           activeClassName="menu-item-selected"
           className="menu-item-prnx menu-item-selected"
           exact
-          to="/"
+          to="/pre-register"
         >
           صفحه اصلی
         </NavLink>

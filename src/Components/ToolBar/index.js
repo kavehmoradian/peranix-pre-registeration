@@ -9,6 +9,17 @@ const ToolBar = (props) => {
       <Col span={24}>
         <div className="steps-action">
           <Form.Item>
+            {[1, 4, 5].includes(props.step)
+              ? <Button
+                type="info"
+                size="large"
+                style={{ margin: "0 8px" }}
+                onClick={props.previous}
+              >
+                قبلی
+              </Button>
+              : null
+            }
             <Button
               type="primary"
               htmlType="submit"
@@ -17,18 +28,6 @@ const ToolBar = (props) => {
             >
               بعدی
             </Button>
-            {[1, 4, 5].includes(props.step) ? (
-              <Button
-                type="info"
-                size="large"
-                style={{ margin: "0 8px" }}
-                onClick={props.previous}
-              >
-                قبلی
-              </Button>
-            ) : (
-              ""
-            )}
           </Form.Item>
         </div>
       </Col>
